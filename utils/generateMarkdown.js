@@ -11,7 +11,6 @@ function renderLicenseBadge(license) {
   } else {
     return "";
   }
-
 }
 
 // TODO: Create a function that returns the license link
@@ -39,7 +38,7 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   let licenseText = "";
   license.forEach((element) => {
-    licenseText += element + ": <br />";
+    licenseText += "<br />" + element + ": <br />";
     licenseText += renderLicenseLink(element) + "<br />";
     switch (element) {
       case "GNU AGPLv3":
