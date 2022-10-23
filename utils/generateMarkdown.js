@@ -3,9 +3,12 @@
 function renderLicenseBadge(license) {
   if (license) {
     const getBadgeArr = license.map((element) => {
-      return `![alt text](https://img.shields.io/static/v1?label=licence&message=${encodeURIComponent(
-        element
-      )}&color=GREEN)`;
+      return (
+        `[![alt text](https://img.shields.io/static/v1?label=licence&message=${encodeURIComponent(
+          element
+        )}&color=GREEN)]` + renderLicenseLink(element)
+      );
+      //this is to try if I can pull the the link to the licenses
     });
     return getBadgeArr.join(" ");
   } else {
@@ -17,19 +20,19 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license === "GNU AGPLv3") {
-    return "[Link to License](https://www.gnu.org/licenses/agpl-3.0)";
+    return "(https://www.gnu.org/licenses/agpl-3.0)";
   } else if (license === "GNU GPLv3") {
-    return "[Link to License](https://www.gnu.org/licenses/gpl-3.0)";
+    return "(https://www.gnu.org/licenses/gpl-3.0)";
   } else if (license === "GNU LGPLv3") {
-    return "[Link to License](https://www.gnu.org/licenses/lgpl-3.0)";
-  } else if (license === "Apache 2.0") {
-    return "[Link to License](https://opensource.org/licenses/Apache-2.0)";
-  } else if (license === "Boost Software 1.0") {
-    return "[Link to License](https://www.boost.org/LICENSE_1_0.txt)";
-  } else if (license === "MIT") {
-    return "[Link to License](https://opensource.org/licenses/MIT)";
+    return "(https://www.gnu.org/licenses/lgpl-3.0)";
+  } else if (license === "Apache License 2.0") {
+    return "(https://opensource.org/licenses/Apache-2.0)";
+  } else if (license === "Boost Software License 1.0") {
+    return "(https://www.boost.org/LICENSE_1_0.txt)";
+  } else if (license === "MIT License") {
+    return "(https://opensource.org/licenses/MIT)";
   } else {
-    return "[Link to License](https://opensource.org/licenses/MPL-2.0)";
+    return "";
   }
 }
 
@@ -38,8 +41,8 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   let licenseText = "";
   license.forEach((element) => {
-    licenseText += "<br />" + element + ": <br />";
-    licenseText += renderLicenseLink(element) + "<br />";
+    licenseText += "<br />";
+    licenseText += "[" + element + "]" + renderLicenseLink(element) + "<br />";
     switch (element) {
       case "GNU AGPLv3":
         licenseText +=
